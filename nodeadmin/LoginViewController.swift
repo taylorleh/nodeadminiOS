@@ -80,7 +80,6 @@ class LoginViewController: UIViewController {
     
     Alamofire.request(.GET, clientInstance.dblogin)
       .response { request, response, data, error in
-        print("USED ALAMO")
         let statusCode = response?.statusCode
         
         if statusCode == 200 {

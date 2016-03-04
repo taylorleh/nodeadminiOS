@@ -37,21 +37,18 @@ class HomeViewController: UIViewController, loginVCDelegate {
   // retreive client databases
   func getClientDatabases(callback:(Array<AnyObject>) -> Void) {
     
-//    Alamofire.request(.GET, "\(self.clientCredentials.host!+self.dbbaseurl)").response { request, response, data, error in
-//      if error == nil && data != nil {
-//        let dbs = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! Array<AnyObject>
-//        callback(dbs!)
-//      }
-//    }
-    
-    
+    Alamofire.request(.GET, "\(self.clientCredentials.host!+self.dbbaseurl)").response { request, response, data, error in
+      if error == nil && data != nil {
+        let dbs = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! Array<AnyObject>
+        callback(dbs!)
+      }
+    }
     
   }
   
   
   func didValidateWithCredential(status: Bool) {
     self.showDatabaseVC = status
-
     
     //    opens database controller if server acknowledges credentials
     if self.showDatabaseVC == true {
@@ -78,7 +75,6 @@ class HomeViewController: UIViewController, loginVCDelegate {
         destination.clientDatabases = data
         
       }
-      
     }
   }
   
